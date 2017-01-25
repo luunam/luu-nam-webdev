@@ -1,25 +1,39 @@
 input.form-control {
-    margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 
 body {
-    padding-top: 36px;
+  padding-top: 36px;
 }
 
 /* navbar */
 .navbar-default {
-    background-color: #428bca;
-    border-color: #E7E7E7;
+  background-color: #428bca;
+  border-color: #E7E7E7;
 }
+
 /* title */
 .navbar-default .navbar-brand {
-    color: #ffffff;
+  color: #ffffff;
 }
 
 .under-navbar {
-    padding-top: 30px;
- }
+  padding-top: 30px;
+}
 
-.glyphicon-nav-bar {
-    color: white;
+.glyphicon-white {
+  color: white;
+}
+
+.glyphicon-blue {
+  color: blue;
+}
+
+.nl-list {
+  padding-left: 0px;
+  margin-left: 0px;
+}
+
+.list-group-item.borderless {
+  border: none;
 }
