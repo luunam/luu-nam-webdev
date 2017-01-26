@@ -19,6 +19,7 @@ body {
 
 .under-navbar {
   padding-top: 30px;
+  overflow: scroll;
 }
 
 .glyphicon-white {
@@ -36,4 +37,54 @@ body {
 
 .list-group-item.borderless {
   border: none;
+}
+
+.no-left-margin {
+  margin-left: 0px;
+}
+
+.no-left-padding {
+  padding-left: 0px;
+}
+
+.no-right-margin {
+  margin-right: 0px;
+}
+
+.no-right-padding {
+  padding-right: 0px;
+}
+
+.border-right {
+  /*display: table-cell;*/
+  /*margin-top: 0px;*/
+  /*padding-top: 0px;*/
+  /*position: absolute ;*/
+  height:100% !important;
+  border-right:1px solid gray;
+}
+
+.left-pane {
+  padding-left: 15px;
+}
+
+.full-height {
+  /*display: table;*/
+  height: 100% !important;
+}
+@media (max-width: 992px) and (orientation:landscape) {
+  .hide-in-landscape {
+    display: none !important;
+  }
+}
+
+@media (max-width: 992px) and (orientation:portrait) {
+  .col-xs-4 {
+    display: none !important;
+  }
+  .col-xs-8 {
+    width: 100%;
+  }
+
+
 }
