@@ -1,15 +1,22 @@
-input.form-control {
-  margin-bottom: 5px;
+html {
+  height: 100%;
 }
 
 body {
-  padding-top: 36px;
+  margin-top: 50px;
+  padding-top: 15px;
+  margin-bottom: 50px;
+}
+
+input.form-control {
+  margin-bottom: 5px;
 }
 
 /* navbar */
 .navbar-default {
   background-color: #428bca;
   border-color: #E7E7E7;
+  margin: 0;
 }
 
 /* title */
@@ -18,8 +25,8 @@ body {
 }
 
 .under-navbar {
-  padding-top: 30px;
-  overflow: scroll;
+  /*padding-top: 30px;*/
+  /*overflow: scroll;*/
 }
 
 .glyphicon-white {
