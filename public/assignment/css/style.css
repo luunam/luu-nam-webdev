@@ -116,3 +116,7 @@ input.form-control {
 .embed-responsive-4by3 {
   padding-bottom: 75%;
 }
+
+.nl-small-margin {
+  margin: 20px;
+}
