@@ -10,37 +10,37 @@
   <style>
 
   </style>
-  <title>New Websites</title>
+  <title>Edit Page</title>
 </head>
 <body>
 <div class="navbar navbar-default navbar-fixed-top">
   <div class="col-xs-4">
-    <a class="navbar-brand pull-right no-right-margin no-right-padding" href="page-new.html">
+    <a class="navbar-brand pull-right no-right-margin no-right-padding" href="page-new.view.client.html">
       <span class="glyphicon glyphicon-plus glyphicon-white" aria-hidden="true"></span>
     </a>
 
     <div class="navbar-text pull-left no-left-padding">
-      <a href="../user/profile.html">
+      <a href="../user/profile.view.client.html">
         <span class="glyphicon glyphicon-chevron-left glyphicon-white hide-in-landscape"></span>
       </a>
     </div>
 
     <div class="navbar-header">
-      <a class="navbar-brand" href="../page/page-list.html">New Page</a>
+      <a class="navbar-brand" href="page-list.view.client.html">Edit Page</a>
     </div>
   </div>
 
   <div class="col-xs-8">
-    <a class="navbar-brand pull-right" href="page-list.html">
+    <a class="navbar-brand pull-right" href="page-list.view.client.html">
       <span class="glyphicon glyphicon-ok glyphicon-white" aria-hidden="true"></span>
     </a>
 
-    <a class="navbar-text pull-left no-left-padding" href="page-list.html">
+    <a class="navbar-text pull-left no-left-padding" href="page-list.view.client.html">
       <span class="glyphicon glyphicon-chevron-left glyphicon-white"></span>
     </a>
 
     <div class="navbar-header">
-      <a class="navbar-brand">New Page</a>
+      <a class="navbar-brand">Edit Page</a>
     </div>
   </div>
 
@@ -51,7 +51,7 @@
     <div class="col-xs-4 hidden-xs">
       <ul class="no-left-margin no-left-padding">
         <li class="list-group-item borderless">
-          <a class="pull-right" href="../widget/widget-list.html">
+          <a class="pull-right" href="page-edit.view.client.html">
             <span class="glyphicon glyphicon-cog"></span>
           </a>
           <a>Blog Post</a>
@@ -79,24 +79,33 @@
       </ul>
     </div>
 
-    <div class="col-xs-8">
+    <div class="col-xs-8" >
+
       <div class="form-group">
         <label>Name</label>
-        <input class="form-control" type="text" placeholder="Page Name">
+        <input class="form-control" type="text" value="Blog Post" placeholder="Name">
       </div>
       <div class="form-group">
         <label>Title</label>
-        <input class="form-control" type="text" placeholder="Page Title">
+        <input class="form-control" type="text" placeholder="Page title">
       </div>
+
+      <div class="form-group">
+        <a class="btn btn-danger btn-block" href="page-list.view.client.html">
+          Delete
+        </a>
+      </div>
+
     </div>
   </div>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
-  <a class="navbar-brand pull-right" href="../user/profile.html">
+  <a class="navbar-brand pull-right" href="../user/profile.view.client.html">
     <span class="glyphicon glyphicon-user glyphicon-nav-bar" aria-hidden="true"></span>
   </a>
 </nav>
 
 </body>
 </html>
+

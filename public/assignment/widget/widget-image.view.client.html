@@ -14,16 +14,16 @@
 </head>
 <body>
 <div class="navbar navbar-default navbar-fixed-top">
-  <a class="navbar-brand pull-right" href="widget-list.html">
+  <a class="navbar-brand pull-right" href="widget-list.view.client.html">
     <span class="glyphicon glyphicon-ok glyphicon-white" aria-hidden="true"></span>
   </a>
 
-  <a class="navbar-brand pull-left" href="widget-list.html">
+  <a class="navbar-brand pull-left" href="widget-list.view.client.html">
     <span class="glyphicon glyphicon-chevron-left glyphicon-white" aria-hidden="true"></span>
   </a>
 
   <div class="navbar-header">
-    <a class="navbar-brand" href="../page/page-list.html">Widget Edit</a>
+    <a class="navbar-brand" href="../page/page-list.view.client.html">Widget Edit</a>
   </div>
 </div>
 <div class="container-fluid under-navbar">
@@ -36,11 +36,23 @@
     <input class="form-control" type="text" placeholder="Text">
   </div>
   <div class="form-group">
-    <label>Size</label>
-    <input class="form-control" type="number" placeholder="Size">
+    <label>URL</label>
+    <input class="form-control" type="url" value="http://solarviews.com/raw/earth/bluemarblewest.jpg" placeholder="URL">
   </div>
   <div class="form-group">
-    <a class="btn btn-danger btn-block" href="widget-list.html">
+    <label>Width</label>
+    <input class="form-control" type="text" value="100%" placeholder="Width">
+  </div>
+  <div>
+    <label>Upload</label>
+    <input class="form-control" type="file">
+  </div>
+
+  <div class="form-group">
+    <div class="btn btn-primary btn-block">
+      Upload Image
+    </div>
+    <a class="btn btn-danger btn-block" href="widget-list.view.client.html">
       Cancel
     </a>
   </div>
