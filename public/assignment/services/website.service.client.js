@@ -37,7 +37,7 @@
     function findWebsiteById(websiteId) {
       return websites.filter(function(ws) {
         return ws._id === websiteId;
-      })
+      })[0];
     }
 
     function updateWebsite(websiteId, website) {

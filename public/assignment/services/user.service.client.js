@@ -17,9 +17,14 @@
       "findUserByUsername": findUserByUsername,
       "findUserByCredentials": findUserByCredentials,
       "updateUser": updateUser,
-      "deleteUser": deleteUser
+      "deleteUser": deleteUser,
+      "getUsers": getUsers
     };
     return api;
+
+    function getUsers() {
+      return users;
+    }
     function createUser(user) {
       users.push(user);
     }

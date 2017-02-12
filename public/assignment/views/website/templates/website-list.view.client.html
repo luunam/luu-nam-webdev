@@ -14,29 +14,11 @@
 
 <div class="container-fluid under-navbar" >
   <ul class="no-left-margin no-left-padding">
-    <li class="list-group-item borderless">
-      <a class="pull-right" href="website-edit.view.client.html">
+    <li ng-repeat="website in model.websites" class="list-group-item borderless">
+      <a class="pull-right" ng-href="#/user/{{model.uid}}/website/{{website._id}}">
         <span class="glyphicon glyphicon-cog"></span>
       </a>
-      <a>Address Book App</a>
-    </li>
-    <li class="list-group-item borderless">
-      <a class="pull-right" href="website-edit.view.client.html">
-        <span class="glyphicon glyphicon-cog"></span>
-      </a>
-      <a>Blogger</a>
-    </li>
-    <li class="list-group-item borderless">
-      <a class="pull-right" href="website-edit.view.client.html">
-        <span class="glyphicon glyphicon-cog"></span>
-      </a>
-      <a>Blogging App</a>
-    </li>
-    <li class="list-group-item borderless">
-      <a class="pull-right" href="website-edit.view.client.html">
-        <span class="glyphicon glyphicon-cog"></span>
-      </a>
-      <a>Script Testing App</a>
+      <a>{{website.name}}</a>
     </li>
   </ul>
 </div>

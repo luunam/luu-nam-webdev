@@ -14,35 +14,11 @@
 
 <div class="container-fluid under-navbar" >
   <ul class="no-left-margin no-left-padding">
-    <li class="list-group-item borderless">
+    <li ng-repeat="page in model.pages" class="list-group-item borderless">
       <a class="pull-right" href="page-edit.view.client.html">
         <span class="glyphicon glyphicon-cog"></span>
       </a>
-      <a>Blog Post</a>
-    </li>
-    <li class="list-group-item borderless">
-      <a class="pull-right" href="page-edit.view.client.html">
-        <span class="glyphicon glyphicon-cog"></span>
-      </a>
-      <a>Blogs</a>
-    </li>
-    <li class="list-group-item borderless">
-      <a class="pull-right" href="page-edit.view.client.html">
-        <span class="glyphicon glyphicon-cog"></span>
-      </a>
-      <a>Home</a>
-    </li>
-    <li class="list-group-item borderless">
-      <a class="pull-right" href="page-edit.view.client.html">
-        <span class="glyphicon glyphicon-cog"></span>
-      </a>
-      <a>About</a>
-    </li>
-    <li class="list-group-item borderless">
-      <a class="pull-right" href="page-edit.view.client.html">
-        <span class="glyphicon glyphicon-cog"></span>
-      </a>
-      <a>Contact-us</a>
+      <a>{{page.name}}</a>
     </li>
   </ul>
 </div>

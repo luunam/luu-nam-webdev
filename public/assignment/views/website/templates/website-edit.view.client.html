@@ -25,7 +25,7 @@
     </a>
 
     <div class="navbar-header">
-      <a class="navbar-brand">New Websites</a>
+      <a class="navbar-brand">Edit Website</a>
     </div>
   </div>
 
@@ -35,27 +35,12 @@
   <div class="row full-height">
     <div class="col-xs-4">
       <ul class="no-left-margin no-left-padding ">
-        <li class="list-group-item borderless ">
-          <a class="pull-right" href="website-edit.view.client.html">
+        <li ng-repeat="website in model.websites" class="list-group-item borderless">
+          <a class="pull-right" ng-href="#/user/{{model.uid}}/website/{{website._id}}">
             <span class="glyphicon glyphicon-cog"></span>
           </a>
-          <a>Address Book App</a>
+          <a>{{website.name}}</a>
         </li>
-        <li class="list-group-item borderless">
-          <div class="pull-right">
-            <a><span class="glyphicon glyphicon-cog"></span></a>
-          </div>
-          <a>Blogger</a></li>
-        <li class="list-group-item borderless">
-          <div class="pull-right">
-            <a><span class="glyphicon glyphicon-cog"></span></a>
-          </div>
-          <a>Blogging App</a></li>
-        <li class="list-group-item borderless">
-          <div class="pull-right">
-            <a><span class="glyphicon glyphicon-cog"></span></a>
-          </div>
-          <a>Script Testing App</a></li>
       </ul>
     </div>
 
@@ -63,18 +48,23 @@
 
       <div class="form-group">
         <label>Website Name</label>
-        <input class="form-control" type="text" placeholder="Name" value="Blogger">
+        <input ng-model="model.website.name" class="form-control" type="text" placeholder="Name" value="Blogger">
       </div>
       <div class="form-group">
         <label>Website Description</label>
-        <textarea rows="4"
-                  class="form-control"
-                  type="text"
-                  placeholder="Description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</textarea>
+        <textarea
+            ng-model="model.website.description"
+            rows="4"
+            class="form-control"
+            type="text"
+            placeholder="Description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</textarea>
       </div>
 
       <div class="form-group">
-        <a class="btn btn-danger btn-block" href="website-list.view.client.html">
+        <a class="btn btn-primary btn-block" ng-click="model.updateWebsite(website)">
+          Update
+        </a>
+        <a class="btn btn-danger btn-block" ng-click="model.deleteWebsite()">
           Delete
         </a>
       </div>

@@ -34,7 +34,7 @@
     function findPageById(pageId) {
       return pages.filter(function(pg) {
         return pg.pageId === pageId;
-      })
+      })[0];
     }
 
     function updatePage(pageId, page) {

@@ -40,7 +40,7 @@
     function findWidgetById(widgetId) {
       return widgets.filter(function(wg) {
         return wg._id === widgetId;
-      })
+      })[0];
     }
 
     function updateWidget(widgetId, widget) {
