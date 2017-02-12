@@ -33,7 +33,7 @@
 
     function findWidgetsByPageId(pageId) {
       return widgets.filter(function(wg) {
-        return ws.pageId === pageId;
+        return wg.pageId === pageId;
       })
     }
 

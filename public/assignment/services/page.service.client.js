@@ -33,7 +33,7 @@
 
     function findPageById(pageId) {
       return pages.filter(function(pg) {
-        return pg.pageId === pageId;
+        return pg._id === pageId;
       })[0];
     }
 

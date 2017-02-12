@@ -1,5 +1,5 @@
 <div class="navbar navbar-default navbar-fixed-top">
-  <a class="navbar-brand pull-right" href="website-new.view.client.html">
+  <a class="navbar-brand pull-right" href="#/user/{{model.uid}}/website/new">
     <span class="glyphicon glyphicon-plus glyphicon-white" aria-hidden="true"></span>
   </a>
 
@@ -8,7 +8,7 @@
   </a>
 
   <div class="navbar-header">
-    <a class="navbar-brand" href="../../page/templates/page-list.view.client.html">Websites</a>
+    <a class="navbar-brand">Websites</a>
   </div>
 </div>
 
@@ -18,7 +18,7 @@
       <a class="pull-right" ng-href="#/user/{{model.uid}}/website/{{website._id}}">
         <span class="glyphicon glyphicon-cog"></span>
       </a>
-      <a>{{website.name}}</a>
+      <a  href="#/user/{{model.uid}}/website/{{website._id}}/page">{{website.name}}</a>
     </li>
   </ul>
 </div>

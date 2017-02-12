@@ -1,9 +1,9 @@
 <div class="navbar navbar-default navbar-fixed-top">
-  <a class="navbar-brand pull-right" href="page-new.view.client.html">
+  <a class="navbar-brand pull-right" href="#/user/{{model.uid}}/website/{{model.wid}}/page/new">
     <span class="glyphicon glyphicon-plus glyphicon-white" aria-hidden="true"></span>
   </a>
 
-  <a class="navbar-brand pull-left" href="../../website/templates/website-list.view.client.html">
+  <a class="navbar-brand pull-left" href="#/user/{{model.uid}}/website">
     <span class="glyphicon glyphicon-chevron-left glyphicon-white" aria-hidden="true"></span>
   </a>
 
@@ -15,10 +15,10 @@
 <div class="container-fluid under-navbar" >
   <ul class="no-left-margin no-left-padding">
     <li ng-repeat="page in model.pages" class="list-group-item borderless">
-      <a class="pull-right" href="page-edit.view.client.html">
+      <a class="pull-right" href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{page._id}}">
         <span class="glyphicon glyphicon-cog"></span>
       </a>
-      <a>{{page.name}}</a>
+      <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{page._id}}/widget">{{page.name}}</a>
     </li>
   </ul>
 </div>

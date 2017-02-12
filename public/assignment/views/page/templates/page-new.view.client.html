@@ -1,6 +1,6 @@
 <div class="navbar navbar-default navbar-fixed-top">
   <div class="col-xs-4">
-    <a class="navbar-brand pull-right no-right-margin no-right-padding" href="page-new.view.client.html">
+    <a class="navbar-brand pull-right no-right-margin no-right-padding" href="#/user/{{model.uid}}/website/{{model.wid}}/page/new">
       <span class="glyphicon glyphicon-plus glyphicon-white" aria-hidden="true"></span>
     </a>
 
@@ -16,11 +16,11 @@
   </div>
 
   <div class="col-xs-8">
-    <a class="navbar-brand pull-right" href="page-list.view.client.html">
+    <a class="navbar-brand pull-right" href ng-click="model.createPage()">
       <span class="glyphicon glyphicon-ok glyphicon-white" aria-hidden="true"></span>
     </a>
 
-    <a class="navbar-text pull-left no-left-padding" href="page-list.view.client.html">
+    <a class="navbar-text pull-left no-left-padding" href="#/user/{{model.uid}}/website/{{model.wid}}/page">
       <span class="glyphicon glyphicon-chevron-left glyphicon-white"></span>
     </a>
 
@@ -35,43 +35,23 @@
   <div class="row full-height">
     <div class="col-xs-4 hidden-xs">
       <ul class="no-left-margin no-left-padding">
-        <li class="list-group-item borderless">
-          <a class="pull-right" href="../../widget/templates/widget-list.view.client.html">
+        <li ng-repeat="page in model.pages" class="list-group-item borderless">
+          <a class="pull-right" href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{page._id}}">
             <span class="glyphicon glyphicon-cog"></span>
           </a>
-          <a>Blog Post</a>
+          <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{page._id}}/widget">{{page.name}}</a>
         </li>
-        <li class="list-group-item borderless">
-          <div class="pull-right">
-            <a><span class="glyphicon glyphicon-cog"></span></a>
-          </div>
-          <a>Blogs</a></li>
-        <li class="list-group-item borderless">
-          <div class="pull-right">
-            <a><span class="glyphicon glyphicon-cog"></span></a>
-          </div>
-          <a>Home</a></li>
-        <li class="list-group-item borderless">
-          <div class="pull-right">
-            <a><span class="glyphicon glyphicon-cog"></span></a>
-          </div>
-          <a>About</a></li>
-        <li class="list-group-item borderless">
-          <div class="pull-right">
-            <a><span class="glyphicon glyphicon-cog"></span></a>
-          </div>
-          <a>Contact us</a></li>
       </ul>
     </div>
 
     <div class="col-xs-8">
       <div class="form-group">
         <label>Name</label>
-        <input class="form-control" type="text" placeholder="Page Name">
+        <input ng-model="model.page.name" class="form-control" type="text" placeholder="Page Name">
       </div>
       <div class="form-group">
         <label>Title</label>
-        <input class="form-control" type="text" placeholder="Page Title">
+        <input ng-model="model.page.title" class="form-control" type="text" placeholder="Page Title">
       </div>
     </div>
   </div>
