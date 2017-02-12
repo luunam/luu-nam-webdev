@@ -1,68 +1,47 @@
 <div class="navbar navbar-default navbar-fixed-top">
-  <a class="navbar-brand pull-right" href="widget-chooser.view.client.html">
+  <a class="navbar-brand pull-right" href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/new">
     <span class="glyphicon glyphicon-plus glyphicon-white" aria-hidden="true"></span>
   </a>
 
-  <a class="navbar-brand pull-left" href="../../page/templates/page-list.view.client.html">
+  <a class="navbar-brand pull-left" href="#/user/{{model.uid}}/website/{{model.wid}}/page/">
     <span class="glyphicon glyphicon-chevron-left glyphicon-white" aria-hidden="true"></span>
   </a>
 
   <div class="navbar-header">
-    <a class="navbar-brand" href="../../page/templates/page-list.view.client.html">Widgets</a>
+    <a class="navbar-brand">Widgets</a>
   </div>
 </div>
 
 <div class="container-fluid under-navbar">
   <div ng-repeat="widget in model.widgets">
-    <div class="nl-small-margin">
-      <a class="pull-right" href="widget-heading.view.client.html">
-        <span class="glyphicon glyphicon-cog"></span>
-      </a>
-
-      <h1>{{widget.text}}</h1>
-    </div>
-    <div class="nl-small-margin">
+    <div ng-switch="widget.widgetType">
       <div class="pull-right">
-        <a href="widget-heading.view.client.html"><span class="glyphicon glyphicon-cog"></span></a>
+        <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{widget._id}}"><span class="glyphicon glyphicon-cog"></span></a>
       </div>
-      <h2>US Senates Reaches Something</h2>
-    </div>
-    <div class="nl-small-margin">
-      <div class="pull-right">
-        <a href="widget-youtube.view.client.html"><span class="glyphicon glyphicon-cog"></span></a>
+      <div ng-switch-when="HEADER" ng-switch="widget.size">
+        <h1 ng-switch-when="1">{{widget.text}}</h1>
+        <h2 ng-switch-when="2">{{widget.text}}</h2>
+        <h3 ng-switch-when="3">{{widget.text}}</h3>
+        <h4 ng-switch-when="4">{{widget.text}}</h4>
+        <h5 ng-switch-when="5">{{widget.text}}</h5>
+        <h6 ng-switch-when="6">{{widget.text}}</h6>
       </div>
-      <div class="embed-responsive embed-responsive-16by9">
-        <iframe class="embed-responsive-item" src="//www.youtube.com/embed/ePbKGoIGAXY"></iframe>
+      <div ng-switch-when="IMAGE">
+        <img ng-src="{{widget.url}}" width="{{widget.width}}" />
       </div>
-
-    </div>
-    <div class="nl-small-margin">
-      <div class="pull-right">
-        <a href="#"><span class="glyphicon glyphicon-cog"></span></a>
+      <div ng-switch-when="HTML" ng-bind-html="model.getTrustedHtml(widget.text)">
       </div>
-      <p>
-        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem
-        aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo
-        enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui
-        ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-        adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat
-        voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut
-        aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil
-        molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
-      </p>
-    </div>
-    <div class="nl-small-margin">
-      <div class="pull-right">
-        <a href="widget-image.view.client.html"><span class="glyphicon glyphicon-cog"></span></a>
+      <div ng-switch-when="YOUTUBE">
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" ng-src="{{model.getYoutubeEmbedUrl(widget.url)}}"></iframe>
+        </div>
       </div>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg" class="img-responsive" alt="Cinque Terre">
-
     </div>
   </div>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
-  <a class="navbar-brand pull-right" href="../../user/templates/profile.view.client.html">
+  <a class="navbar-brand pull-right" href="#/user/{{model.uid}}">
     <span class="glyphicon glyphicon-user glyphicon-nav-bar" aria-hidden="true"></span>
   </a>
 </nav>

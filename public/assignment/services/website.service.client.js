@@ -35,17 +35,21 @@
     }
 
     function findWebsiteById(websiteId) {
-      return websites.filter(function(ws) {
+      var websiteFound = websites.filter(function(ws) {
         return ws._id === websiteId;
       })[0];
+
+      return angular.copy(websiteFound);
     }
 
     function updateWebsite(websiteId, website) {
       var res = null;
       websites.map(function(ws) {
         if (ws._id === websiteId) {
-          res = angular.copy(website);
-          return res;
+          for (var k in website) {
+            ws[k] = website[k];
+          }
+          res = website;
         }
       });
       return res;

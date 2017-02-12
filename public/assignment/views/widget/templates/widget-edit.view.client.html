@@ -1,11 +1,31 @@
-<div ng-switch="widget.widgetType">
-  <div ng-switch-when="HEADING">
-    <ng-include src="'widget-heading.view.client.html'">
-  </div>
-  <div ng-switch-when="IMAGE">
-    <ng-include src="'widget-image.view.client.html'">
-  </div>
-  <div ng-switch-when="YOUTUBE">
-    <ng-include src="'widget-youtube.view.client.html'">
+<div class="navbar navbar-default navbar-fixed-top">
+  <a class="navbar-brand pull-right" href ng-click="model.updateWidget()">
+    <span class="glyphicon glyphicon-ok glyphicon-white" aria-hidden="true"></span>
+  </a>
+
+  <a class="navbar-brand pull-left" href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget">
+    <span class="glyphicon glyphicon-chevron-left glyphicon-white" aria-hidden="true"></span>
+  </a>
+
+  <div class="navbar-header">
+    <div class="navbar-brand">Widget Edit</div>
   </div>
 </div>
+
+<div ng-switch="model.widget.widgetType">
+  <div ng-switch-when="HEADER">
+    <ng-include src="'views/widget/templates/widget-heading.view.client.html'">
+  </div>
+  <div ng-switch-when="IMAGE">
+    <ng-include src="'views/widget/templates/widget-image.view.client.html'">
+  </div>
+  <div ng-switch-when="YOUTUBE">
+    <ng-include src="'views/widget/templates/widget-youtube.view.client.html'">
+  </div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="navbar-brand pull-right">
+    <span class="glyphicon glyphicon-user glyphicon-white" aria-hidden="true"></span>
+  </div>
+</nav>

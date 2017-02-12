@@ -32,17 +32,21 @@
     }
 
     function findPageById(pageId) {
-      return pages.filter(function(pg) {
+      var pageFound = pages.filter(function(pg) {
         return pg._id === pageId;
       })[0];
+
+      return angular.copy(pageFound);
     }
 
     function updatePage(pageId, page) {
       var res = null;
       pages.map(function(pg) {
         if (pg._id === pageId) {
-          res = angular.copy(page);
-          return res;
+          for (var k in page) {
+            pg[k] = page[k];
+          }
+          res = k;
         }
       });
 
