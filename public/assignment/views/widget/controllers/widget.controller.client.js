@@ -15,6 +15,7 @@
     vm.getTrustedHtml = getTrustedHtml;
 
     function init() {
+
       WidgetService.findWidgetsByPageId(vm.pid)
         .success(function(res) {
           vm.widgets = res;

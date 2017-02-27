@@ -1,5 +1,6 @@
 module.exports = function(app) {
   app.post("/api/page/:pid/widget", createWidget);
+  app.put("/api/page/:pid/widget", sortWidget);
   app.get("/api/page/:pid/widget", findWidgetsByPageId);
   app.get("/api/widget/:wgid", findWidgetById);
   app.put("/api/widget/:wgid", updateWidget);
@@ -35,6 +36,24 @@ module.exports = function(app) {
       return wg.pageId === pageId;
     });
     res.send(rs);
+  }
+
+  Array.prototype.move = function (old_index, new_index) {
+    if (new_index >= this.length) {
+      var k = new_index - this.length;
+      while ((k--) + 1) {
+        this.push(undefined);
+      }
+    }
+    this.splice(new_index, 0, this.splice(old_index, 1)[0]);
+  };
+
+  function sortWidget(req, res) {
+    console.log('sort');
+    var initial = req.query['initial'];
+    var final = req.query['final'];
+    widgets.move(initial, final);
+    res.sendStatus(200);
   }
 
   function findWidgetById(req, res) {
