@@ -52,7 +52,7 @@
 
     function updateWidget(widgetId, widget) {
       var res = null;
-      console.log("HERE");
+      console.log("TEST");
       widgets.map(function (wg) {
         if (wg._id === widgetId) {
           for (var k in widget) {
@@ -65,6 +65,7 @@
     }
 
     function deleteWidget(widgetId) {
+      console.log('DELETE');
       for (var w in widgets) {
         var wg = widgets[w];
         if (wg._id === widgetId) {

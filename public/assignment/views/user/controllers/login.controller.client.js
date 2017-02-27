@@ -40,8 +40,16 @@
     var vm = this;
     vm.uid = $routeParams["uid"];
     console.log(UserService.getUsers());
+    vm.updateUser = updateUser;
+
     function init() {
       vm.user = UserService.findUserById(vm.uid);
+
+    }
+
+    function updateUser() {
+      console.log('update user');
+      UserService.updateUser(vm.uid, vm.user);
     }
 
     init();

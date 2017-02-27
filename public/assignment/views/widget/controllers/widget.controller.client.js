@@ -25,7 +25,8 @@
       var id = urlParts[urlParts.length - 1];
 
       var url = "https://www.youtube.com/embed/" + id;
-
+      console.log('URL');
+      console.log(url);
       return $sce.trustAsResourceUrl(url);
     }
 
@@ -56,15 +57,16 @@
     vm.wgid = $routeParams["wgid"];
 
     vm.updateWidget = updateWidget;
+    vm.deleteWidget = deleteWidget;
 
     vm.update = false;
     function init() {
       vm.widget = {};
-      if (vm.wgid === 'nl_header') {
+      if (vm.wgid === 'nl_HEADER') {
         vm.widget.widgetType = 'HEADER';
-      } else if (vm.wgid === 'nl_image') {
+      } else if (vm.wgid === 'nl_IMAGE') {
         vm.widget.widgetType = 'IMAGE';
-      } else if (vm.wgid === 'nl_youtube') {
+      } else if (vm.wgid === 'nl_YOUTUBE') {
         vm.widget.widgetType = 'YOUTUBE';
       } else {
         vm.widget = WidgetService.findWidgetById(vm.wgid);
@@ -78,11 +80,16 @@
       if (vm.update) {
         WidgetService.updateWidget(vm.wgid, vm.widget);
       } else {
+        vm.widget.type = vm.type;
+        vm.widget._id = 'test';
         WidgetService.createWidget(vm.pid, vm.widget);
       }
-      console.log(WidgetService.getWidget());
+      $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget");
+    }
+
+    function deleteWidget() {
+      WidgetService.deleteWidget(vm.wgid);
       $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget");
     }
   }
-
 })();
