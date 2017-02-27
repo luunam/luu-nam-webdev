@@ -24,6 +24,7 @@ module.exports = function(app) {
   function createWidget(req, res) {
     var newWidget = req.body;
     newWidget.pageId = req.params.pid;
+    newWidget._id = (new Date()).getTime() + "";
     widgets.push(newWidget);
     res.sendStatus(200);
   }

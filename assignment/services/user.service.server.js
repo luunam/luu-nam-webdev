@@ -1,4 +1,5 @@
 module.exports = function (app) {
+  console.log("CREATE");
   app.get("/api/user", findUser);
   app.get("/api/user/:userId", findUserByUserId);
   app.put("/api/user/:userId", updateUser);
@@ -34,12 +35,14 @@ module.exports = function (app) {
   function updateUser(req, res) {
     var userId = req.params['userId'];
     console.log(userId);
+    console.log('body ' + JSON.stringify(req.body));
     for(var u in users) {
       var user = users[u];
       if( user._id === userId ) {
         var newUser = req.body;
         users[u].firstName = newUser.firstName;
         users[u].lastName = newUser.lastName;
+        console.log('user: ' + users);
         res.sendStatus(200);
         return;
       }
@@ -77,11 +80,12 @@ module.exports = function (app) {
     if(user) {
       res.send(user);
     } else {
-      res.sendStatus(404).send('User not found for username: ' + username);
+      res.status(404).send('User not found for username: ' + username);
     }
   }
 
-  function findUserByCredentials(req, res){
+  function findUserByCredentials(req, res) {
+    console.log('recv: ' + req.body);
     var username = req.query['username'];
     var password = req.query['password'];
     var user = users.find(function(u){
@@ -90,7 +94,7 @@ module.exports = function (app) {
     if(user) {
       res.send(user);
     } else {
-      res.sendStatus(404).send('User not found for username: ' + username + ' and password: ' + password);
+      res.status(404).send('User not found for username: ' + username + ' and password: ' + password);
     }
   }
 };

@@ -11,8 +11,13 @@
     vm.uid = $routeParams['uid'];
 
     function init() {
-      vm.pages = PageService.findPageByWebsiteId(vm.wid);
-      console.log(vm.pages);
+      PageService.findPageByWebsiteId(vm.wid)
+        .success(function (res) {
+          vm.pages = res;
+        })
+        .error(function () {
+          console.log("can't find page by website id");
+        });
     }
     init();
   }
@@ -26,14 +31,24 @@
     vm.createPage = createPage;
 
     function init() {
-      vm.pages = PageService.findPageByWebsiteId(vm.wid);
+      PageService.findPageByWebsiteId(vm.wid)
+        .success(function(res) {
+          vm.pages = res;
+        })
+        .error(function() {
+          console.log("can't find page by website id");
+        })
     }
     init();
 
     function createPage() {
-      vm.page._id = 'test';
-      PageService.createPage(vm.wid, vm.page);
-      $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page");
+      PageService.createPage(vm.wid, vm.page)
+        .success(function(res) {
+          $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page");
+        })
+        .error(function() {
+          console.log("can't create page");
+        })
     }
   }
 
@@ -47,22 +62,43 @@
     vm.deletePage = deletePage;
 
     function init() {
-      vm.page = PageService.findPageById(vm.pid);
-      vm.pages = PageService.findPageByWebsiteId(vm.wid);
-      console.log(vm.page);
+      PageService.findPageById(vm.pid)
+        .success(function(res) {
+          vm.page = res;
+        })
+        .error(function() {
+          console.log("can't find page by id");
+        });
+
+      PageService.findPageByWebsiteId(vm.wid)
+        .success(function (res) {
+          vm.pages = res;
+        })
+        .error(function () {
+          console.log("can't find page by website id");
+        });
     }
     init();
 
     function updatePage() {
-      PageService.updatePage(vm.pid, vm.page);
-      $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page");
+      PageService.updatePage(vm.pid, vm.page)
+        .success(function(res) {
+          $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page");
+        })
+        .error(function() {
+          console.log("cannot update page");
+        });
     }
 
     function deletePage() {
-      PageService.deletePage(vm.pid);
-      $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page");
+      PageService.deletePage(vm.pid)
+        .success(function(res) {
+          $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page");
+        })
+        .error(function() {
+          console.log("cannot delete page");
+        });
     }
-
   }
 
 })();

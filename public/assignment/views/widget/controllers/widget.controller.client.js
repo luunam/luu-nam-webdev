@@ -15,7 +15,13 @@
     vm.getTrustedHtml = getTrustedHtml;
 
     function init() {
-      vm.widgets = WidgetService.findWidgetsByPageId(vm.pid);
+      WidgetService.findWidgetsByPageId(vm.pid)
+        .success(function(res) {
+          vm.widgets = res;
+        })
+        .error(function() {
+          console.log("cannot find widgets by page id");
+        });
     }
 
     init();
@@ -25,8 +31,6 @@
       var id = urlParts[urlParts.length - 1];
 
       var url = "https://www.youtube.com/embed/" + id;
-      console.log('URL');
-      console.log(url);
       return $sce.trustAsResourceUrl(url);
     }
 
@@ -62,6 +66,8 @@
     vm.update = false;
     function init() {
       vm.widget = {};
+      console.log('init');
+      console.log(vm.wgid);
       if (vm.wgid === 'nl_HEADER') {
         vm.widget.widgetType = 'HEADER';
       } else if (vm.wgid === 'nl_IMAGE') {
@@ -69,8 +75,14 @@
       } else if (vm.wgid === 'nl_YOUTUBE') {
         vm.widget.widgetType = 'YOUTUBE';
       } else {
-        vm.widget = WidgetService.findWidgetById(vm.wgid);
-        vm.update = true;
+        WidgetService.findWidgetById(vm.wgid)
+          .success(function(res) {
+            vm.widget = res;
+            vm.update = true;
+          })
+          .error(function() {
+            console.log("find widget by id");
+          });
       }
     }
 
@@ -78,18 +90,36 @@
 
     function updateWidget() {
       if (vm.update) {
-        WidgetService.updateWidget(vm.wgid, vm.widget);
+        WidgetService.updateWidget(vm.wgid, vm.widget)
+          .success(function(res) {
+            $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget");
+          })
+          .error(function() {
+            console.log("cannot update widget");
+          });
+
       } else {
+        console.log(vm.widget);
         vm.widget.type = vm.type;
-        vm.widget._id = 'test';
-        WidgetService.createWidget(vm.pid, vm.widget);
+        WidgetService.createWidget(vm.pid, vm.widget)
+          .success(function(res) {
+            $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget");
+          })
+          .error(function() {
+            console.log("cannot create widget");
+          });
       }
-      $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget");
+
     }
 
     function deleteWidget() {
-      WidgetService.deleteWidget(vm.wgid);
-      $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget");
+      WidgetService.deleteWidget(vm.wgid)
+        .success(function(res) {
+          $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget");
+        })
+        .error(function() {
+          console.log("can't delete widget");
+        });
     }
   }
 })();

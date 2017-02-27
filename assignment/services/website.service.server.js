@@ -19,7 +19,7 @@ module.exports = function(app) {
     newWebsite._id = (new Date()).getTime() + "";
     newWebsite.developerId = req.params.userId;
     websites.push(newWebsite);
-    res.sendStatus(200);
+    res.status(200).send(newWebsite);
   }
 
   function findWebsitesByUser(req, res) {
@@ -28,6 +28,7 @@ module.exports = function(app) {
       return ws.developerId === uid;
     });
 
+    console.log(JSON.stringify(rs));
     res.send(rs);
   }
 

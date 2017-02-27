@@ -12,12 +12,19 @@
     vm.user = {};
 
     function login() {
-      user = UserService.findUserByCredentials(vm.user.username, vm.user.password);
-      if(user) {
-        $location.url("/user/" + user._id);
-      } else {
-        vm.error = "Unable to login";
-      }
+      var promise = UserService.findUserByCredentials(vm.user.username, vm.user.password);
+      promise
+        .success(function (user) {
+          var loginUser = user;
+          if(loginUser != null) {
+            $location.url('/user/' + loginUser._id);
+          } else {
+            vm.error = 'user not found';
+          }
+        })
+        .error(function(err) {
+          vm.error = 'user not found';
+        });
     }
 
     function register() {
@@ -30,29 +37,70 @@
     vm.createUser = createUser;
 
     function createUser(user) {
-      user._id = 'test';
-      UserService.createUser(user);
-      $location.url("/user/test");
+      UserService
+        .findUserByUsername(user.username)
+        .success(function (user) {
+          vm.error = "sorry that username is taken"
+        })
+        .error(function(){
+          UserService
+            .createUser(user)
+            .success(function(user){
+              console.log('create user successfully');
+              $location.url('/user/' + user._id);
+            })
+            .error(function () {
+              vm.error = 'sorry could not register';
+            });
+        });
     }
   }
 
   function ProfileController($routeParams, UserService) {
     var vm = this;
-    vm.uid = $routeParams["uid"];
-    console.log(UserService.getUsers());
-    vm.updateUser = updateUser;
+    var userId = $routeParams['uid'];
+    vm.unregisterUser = unregisterUser;
 
     function init() {
-      vm.user = UserService.findUserById(vm.uid);
-
+      UserService
+        .findUserById(userId)
+        .success(renderUser);
     }
+    init();
+
+    function unregisterUser(user) {
+      var answer = confirm("Are you sure?");
+      console.log(answer);
+      if(answer) {
+        UserService
+          .deleteUser(user._id)
+          .success(function () {
+            $location.url("/login");
+          })
+          .error(function () {
+            vm.error = 'unable to remove user';
+          });
+      }
+    }
+
+    function renderUser(user) {
+      vm.user = user;
+      console.log(user);
+    }
+
+    vm.updateUser = updateUser;
 
     function updateUser() {
-      console.log('update user');
-      UserService.updateUser(vm.uid, vm.user);
+      UserService
+        .updateUser(userId, vm.user)
+        .success(function (response) {
+          vm.message = "user successfully updated";
+          console.log("successful");
+        })
+        .error(function () {
+          vm.error = "unable to update user";
+        });
     }
-
-    init();
   }
 
 })();
