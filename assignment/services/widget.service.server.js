@@ -28,45 +28,50 @@ module.exports = function(app) {
     res.sendStatus(200);
   }
 
-  function findWidgetsByPageId(pageId) {
-    return widgets.filter(function (wg) {
+  function findWidgetsByPageId(req, res) {
+    var pageId = req.params.pid;
+    var rs = widgets.filter(function (wg) {
       return wg.pageId === pageId;
-    })
+    });
+    res.send(rs);
   }
 
-  function findWidgetById(widgetId) {
-    var widgetFound = widgets.filter(function (wg) {
+  function findWidgetById(req, res) {
+    var widgetId = req.params.wgid;
+    var widgetFound = widgets.find(function (wg) {
       return wg._id === widgetId;
-    })[0];
+    });
 
-    return angular.copy(widgetFound);
+    if (widgetFound) {
+      res.send(widgetFound);
+    } else {
+      res.sendStatus(200);
+    }
   }
 
-  function updateWidget(widgetId, widget) {
-    var res = null;
-    console.log("TEST");
-    widgets.map(function (wg) {
+  function updateWidget(req, res) {
+    var widgetId = req.params.wgid;
+    for (w in widgets) {
+      wg = widgets[w];
       if (wg._id === widgetId) {
         for (var k in widget) {
           wg[k] = widget[k];
         }
-        res = widget;
+        res.sendStatus(200);
+        return;
       }
-    });
-    return res;
+    }
+    res.sendStatus(404);
   }
 
-  function deleteWidget(widgetId) {
-    console.log('DELETE');
+  function deleteWidget(req, res) {
+    var widgetId = req.params.wgid;
     for (var w in widgets) {
       var wg = widgets[w];
       if (wg._id === widgetId) {
         widgets.splice(w, 1);
       }
     }
-  }
-
-  function getWidget() {
-    return widgets;
+    res.sendStatus(200);
   }
 };
