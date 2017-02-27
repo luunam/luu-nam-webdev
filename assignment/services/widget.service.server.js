@@ -38,21 +38,11 @@ module.exports = function(app) {
     res.send(rs);
   }
 
-  Array.prototype.move = function (old_index, new_index) {
-    if (new_index >= this.length) {
-      var k = new_index - this.length;
-      while ((k--) + 1) {
-        this.push(undefined);
-      }
-    }
-    this.splice(new_index, 0, this.splice(old_index, 1)[0]);
-  };
-
   function sortWidget(req, res) {
-    console.log('sort');
     var initial = req.query['initial'];
     var final = req.query['final'];
     widgets.move(initial, final);
+    console.log(JSON.stringify(widgets));
     res.sendStatus(200);
   }
 

@@ -13,6 +13,7 @@ module.exports = function(app) {
 
   function createPage(req, res) {
     var newPage = req.body;
+    newPage._id = (new Date()).getTime() + "";
     newPage.websiteId = req.params.wid;
     pages.push(newPage);
     res.sendStatus(200);
@@ -40,6 +41,7 @@ module.exports = function(app) {
   }
 
   function updatePage(req, res) {
+    var pageId = req.params.pid;
     for (p in pages) {
       var pg = pages[p];
       if (pg._id === pageId) {

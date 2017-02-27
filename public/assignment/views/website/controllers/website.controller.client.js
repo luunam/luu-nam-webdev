@@ -74,6 +74,7 @@
 
       WebsiteService.findWebsiteById(vm.wid)
         .success(function(res) {
+          console.log(res);
           vm.website = res;
         })
         .error(function() {

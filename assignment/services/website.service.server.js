@@ -1,9 +1,9 @@
 module.exports = function(app) {
   app.post("/api/user/:userId/website", createWebsite);
   app.get("/api/user/:userId/website", findWebsitesByUser);
-  app.get("/api/website/:websiteId", findWebsiteById);
-  app.put("/api/website/:websiteId", updateWebsite);
-  app.delete("/api/website/:websiteId", deleteWebsite);
+  app.get("/api/website/:wid", findWebsiteById);
+  app.put("/api/website/:wid", updateWebsite);
+  app.delete("/api/website/:wid", deleteWebsite);
 
   var websites = [
     { "_id": "123", "name": "Facebook",    "developerId": "456", "description": "Lorem" },
@@ -34,9 +34,11 @@ module.exports = function(app) {
 
   function findWebsiteById(req, res) {
     var wid = req.params.wid;
+    console.log("WID: " + wid);
     var websiteFound = websites.find(function(ws) {
       return ws._id === wid;
     });
+    console.log(websiteFound);
     res.send(websiteFound);
   }
 
