@@ -4,10 +4,10 @@
   "description": "Web Dev at Northeastern University",
   "main": "server.js",
   "dependencies": {
-    "body-parser": "^1.15.1",
+    "angular": "^1.6.2",
+    "body-parser": "^1.16.1",
     "express": "^4.13.4",
-    "mongoose": "^4.4.15",
-    "angular": "^1.6.2"
+    "mongoose": "^4.4.15"
   },
   "devDependencies": {},
   "scripts": {
