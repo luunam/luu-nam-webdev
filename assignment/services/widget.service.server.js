@@ -6,6 +6,11 @@ module.exports = function(app) {
   app.put("/api/widget/:wgid", updateWidget);
   app.delete("/api/widget/:wgid", deleteWidget);
 
+  var multer = require('multer');
+  var upload = multer({ dest: __dirname+'/../../public/uploads' });
+
+  app.post ("/api/upload", upload.single('myFile'), uploadImage);
+
   var widgets = [
     {"_id": "123", "widgetType": "HEADER", "pageId": "321", "size": 2, "text": "GIZMODO"},
     {"_id": "234", "widgetType": "HEADER", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
@@ -41,8 +46,22 @@ module.exports = function(app) {
   function sortWidget(req, res) {
     var initial = req.query['initial'];
     var final = req.query['final'];
-    widgets.move(initial, final);
-    console.log(JSON.stringify(widgets));
+    var pid = req.params.pid;
+
+    var pageWidgets = widgets.filter(function(wg) {
+      return wg.pageId == pid;
+    });
+
+    var remainingWidgets = widgets.filter(function(wg) {
+      return wg.pageId != pid;
+    });
+
+    var item = pageWidgets.splice(initial, 1)[0];
+    if (item != null) {
+      pageWidgets.splice(final, 0, item);
+    }
+
+    widgets = remainingWidgets.concat(pageWidgets);
     res.sendStatus(200);
   }
 
@@ -82,6 +101,21 @@ module.exports = function(app) {
         widgets.splice(w, 1);
       }
     }
+    res.sendStatus(200);
+  }
+
+  function uploadImage(req, res) {
+    var widgetId      = req.body.widgetId;
+    var width         = req.body.width;
+    var myFile        = req.file;
+
+    var originalname  = myFile.originalname; // file name on user's computer
+    var filename      = myFile.filename;     // new file name in upload folder
+    var path          = myFile.path;         // full path of uploaded file
+    var destination   = myFile.destination;  // folder where file is saved to
+    var size          = myFile.size;
+    var mimetype      = myFile.mimetype;
+
     res.sendStatus(200);
   }
 };

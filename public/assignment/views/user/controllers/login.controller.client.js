@@ -56,10 +56,10 @@
     }
   }
 
-  function ProfileController($routeParams, UserService) {
+  function ProfileController($routeParams, UserService, $location) {
     var vm = this;
     var userId = $routeParams['uid'];
-    vm.unregisterUser = unregisterUser;
+    vm.deleteUser = deleteUser;
 
     function init() {
       UserService
@@ -68,7 +68,7 @@
     }
     init();
 
-    function unregisterUser(user) {
+    function deleteUser(user) {
       var answer = confirm("Are you sure?");
       console.log(answer);
       if(answer) {

@@ -63,6 +63,7 @@
 
     vm.updateWidget = updateWidget;
     vm.deleteWidget = deleteWidget;
+    vm.uploadImage = uploadImage;
 
     vm.update = false;
     function init() {
@@ -121,6 +122,10 @@
         .error(function() {
           console.log("can't delete widget");
         });
+    }
+
+    function uploadImage() {
+      WidgetService.uploadImage()
     }
   }
 })();

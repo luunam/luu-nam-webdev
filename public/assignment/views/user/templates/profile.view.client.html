@@ -29,7 +29,10 @@
     <a class="btn btn-primary btn-block" href="#/user/{{model.user._id}}/website/">
       Websites
     </a>
-    <a class="btn btn-danger btn-block" href="#/">
+    <a class="btn btn-danger btn-block" href="" ng-click="model.deleteUser(model.user)">
+      Delete
+    </a>
+    <a class="btn btn-warning btn-block" href="#/">
       Logout
     </a>
   </div>

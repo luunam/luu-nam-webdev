@@ -59,7 +59,7 @@ module.exports = function (app) {
         return;
       }
     }
-    res.sendStatus(404).send({});
+    res.sendStatus(404);
   }
 
   function findUser(req, res) {

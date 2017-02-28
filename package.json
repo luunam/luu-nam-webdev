@@ -10,6 +10,7 @@
     "express": "^4.13.4",
     "express-session": "^1.15.1",
     "mongoose": "^4.4.15",
+    "multer": "^1.3.0",
     "passport": "^0.3.2"
   },
   "devDependencies": {},
@@ -17,6 +18,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "author": "Jose G. Annunziato",
+  "author": "Nam Luu",
   "license": "ISC"
 }
