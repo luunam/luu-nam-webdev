@@ -116,6 +116,6 @@ module.exports = function(app) {
     var size          = myFile.size;
     var mimetype      = myFile.mimetype;
 
-    res.sendStatus(200);
+    res.status(200).send(myFile);
   }
 };
