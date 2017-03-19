@@ -20,9 +20,10 @@ module.exports = function () {
     var deferred = q.defer();
     widget._page = pid;
     widgetModel
-      .create(page, function (err, doc) {
+      .create(widget, function (err, doc) {
         if (err) {
-          deferred.abort(err);
+          console.log('ERROR WIDGET: ', err);
+          deferred.reject(err);
         } else {
           deferred.resolve(doc);
         }
@@ -33,7 +34,7 @@ module.exports = function () {
   function findAllWidgetsForPage(pid) {
     var deferred = q.defer();
     widgetModel
-      .find({_website: pid}, function(err, widgets) {
+      .find({_page: pid}, function(err, widgets) {
         if (err) {
           deferred.abort(err);
         } else {
@@ -43,12 +44,13 @@ module.exports = function () {
     return deferred.promise;
   }
 
-  function findWidgetById(wid) {
+  function findWidgetById(wgid) {
     var deferred = q.defer();
-    pageModel
-      .findOne({_id: wid}, function (err, widget) {
+    widgetModel
+      .findOne({_id: wgid}, function (err, widget) {
         if (err) {
-          deferred.abort(err);
+          console.log(err);
+          deferred.reject(err);
         } else {
           deferred.resolve(widget);
         }

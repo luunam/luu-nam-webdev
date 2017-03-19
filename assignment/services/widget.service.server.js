@@ -81,7 +81,7 @@ module.exports = function(app, model) {
 
   function updateWidget(req, res) {
     model.widgetModel
-      .udpateWidget(req.params.wgid, req.body)
+      .updateWidget(req.params.wgid, req.body)
       .then(function () {
         res.status(200).send();
       }, function (err) {

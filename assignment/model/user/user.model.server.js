@@ -21,7 +21,8 @@ module.exports = function () {
     userModel
       .findById(userId, function (err, actor) {
         if (err) {
-          deferred.abort(err);
+          console.log(err);
+          deferred.reject(err);
         } else {
           deferred.resolve(actor);
         }
@@ -32,11 +33,14 @@ module.exports = function () {
   function findUserByUsername(username) {
     var deferred = q.defer();
     userModel
-      .findOne({username: username})
-      .exec(function(err, user) {
+      .findOne({username: username}, function(err, user) {
         if (err) {
-          deferred.abort(err);
+          console.log('ERR: ', err);
+          deferred.reject(err);
         } else {
+          if (user == null) {
+            deferred.reject('not found');
+          }
           deferred.resolve(user);
         }
       });
@@ -85,11 +89,11 @@ module.exports = function () {
 
   function createUser(user) {
     var deferred = q.defer();
-    userModel.create(user, function(err, doc) {
+    userModel.create(user, function(err, user) {
       if (err) {
         deferred.abort();
       } else {
-        deferred.resolve();
+        deferred.resolve(user);
       }
     });
     return deferred.promise;

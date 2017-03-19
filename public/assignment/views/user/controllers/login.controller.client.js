@@ -47,6 +47,7 @@
             .createUser(user)
             .success(function(user){
               console.log('create user successfully');
+              console.log(user);
               $location.url('/user/' + user._id);
             })
             .error(function () {

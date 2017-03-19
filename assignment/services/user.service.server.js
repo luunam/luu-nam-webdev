@@ -1,5 +1,4 @@
 module.exports = function (app, model) {
-  console.log("CREATE");
   app.get("/api/user", findUser);
   app.get("/api/user/:userId", findUserByUserId);
   app.put("/api/user/:userId", updateUser);
@@ -28,7 +27,7 @@ module.exports = function (app, model) {
     model.userModel
       .createUser(newUser)
       .then(function (user) {
-        res.json(user);
+        res.send(user);
       }, function (error) {
         res.status(500).send(error);
       });
@@ -48,9 +47,9 @@ module.exports = function (app, model) {
     model.userModel
       .findUserById(req.params['userId'])
       .then(function (user) {
-        res.json(user);
+        res.send(user);
       }, function (error) {
-        res.sendStatus(404);
+        res.status(404).send(error);
       });
   }
 
@@ -68,9 +67,9 @@ module.exports = function (app, model) {
     model.userModel
       .findUserByUsername(req.query['username'])
       .then(function (user) {
-        res.json(user);
+        res.send(user);
       }, function (error) {
-        res.sendStatus(404);
+        res.status(404).send(error);
       });
   }
 
@@ -80,7 +79,7 @@ module.exports = function (app, model) {
       .then(function (user) {
         res.json(user);
       }, function (error) {
-        res.sendStatus(404);
+        res.status(404).send(error);
       });
   }
 };
