@@ -1,4 +1,4 @@
-module.exports = function(app) {
+module.exports = function(app, model) {
   app.post("/api/page/:pid/widget", createWidget);
   app.put("/api/page/:pid/widget", sortWidget);
   app.get("/api/page/:pid/widget", findWidgetsByPageId);
@@ -28,19 +28,23 @@ module.exports = function(app) {
   ];
 
   function createWidget(req, res) {
-    var newWidget = req.body;
-    newWidget.pageId = req.params.pid;
-    newWidget._id = (new Date()).getTime() + "";
-    widgets.push(newWidget);
-    res.sendStatus(200);
+    model.widgetModel
+      .createWidget(req.params.pid, req.body)
+      .then(function (widget) {
+        res.status(200).send(widget);
+      }, function (err) {
+        res.status(404).send(err);
+      });
   }
 
   function findWidgetsByPageId(req, res) {
-    var pageId = req.params.pid;
-    var rs = widgets.filter(function (wg) {
-      return wg.pageId === pageId;
-    });
-    res.send(rs);
+    model.widgetModel
+      .findAllWidgetsForPage(req.params.pid)
+      .then(function (widgets) {
+        res.status(200).send(widgets);
+      }, function (err) {
+        res.status(404).send(err);
+      });
   }
 
   function sortWidget(req, res) {
@@ -66,42 +70,33 @@ module.exports = function(app) {
   }
 
   function findWidgetById(req, res) {
-    var widgetId = req.params.wgid;
-    var widgetFound = widgets.find(function (wg) {
-      return wg._id === widgetId;
-    });
-
-    if (widgetFound) {
-      res.send(widgetFound);
-    } else {
-      res.sendStatus(200);
-    }
+    model.widgetModel
+      .findWidgetById(req.params.wgid)
+      .then(function (widget) {
+        res.status(200).send(widget);
+      }, function (err) {
+        res.status(404).send(err);
+      });
   }
 
   function updateWidget(req, res) {
-    var widgetId = req.params.wgid;
-    for (w in widgets) {
-      wg = widgets[w];
-      if (wg._id === widgetId) {
-        for (var k in widget) {
-          wg[k] = widget[k];
-        }
-        res.sendStatus(200);
-        return;
-      }
-    }
-    res.sendStatus(404);
+    model.widgetModel
+      .udpateWidget(req.params.wgid, req.body)
+      .then(function () {
+        res.status(200).send();
+      }, function (err) {
+        res.status(404).send(err);
+      });
   }
 
   function deleteWidget(req, res) {
-    var widgetId = req.params.wgid;
-    for (var w in widgets) {
-      var wg = widgets[w];
-      if (wg._id === widgetId) {
-        widgets.splice(w, 1);
-      }
-    }
-    res.sendStatus(200);
+    model.widgetModel
+      .deleteWidget(req.params.wgid)
+      .then(function () {
+        res.status(200).send();
+      }, function (err) {
+        res.status(404).send(err);
+      });
   }
 
   function uploadImage(req, res) {
