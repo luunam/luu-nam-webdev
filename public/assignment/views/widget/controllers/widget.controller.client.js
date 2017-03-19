@@ -30,8 +30,11 @@
     init();
 
     function getYoutubeEmbedUrl(widgetUrl) {
+
       var urlParts = widgetUrl.split('/');
-      var id = urlParts[urlParts.length - 1];
+      var lastPart = urlParts[urlParts.length-1];
+      var urlParts2 = lastPart.split('=');
+      var id = urlParts2[urlParts2.length - 1];
 
       var url = "https://www.youtube.com/embed/" + id;
       return $sce.trustAsResourceUrl(url);
