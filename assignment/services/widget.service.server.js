@@ -48,25 +48,14 @@ module.exports = function(app, model) {
   }
 
   function sortWidget(req, res) {
-    var initial = req.query['initial'];
-    var final = req.query['final'];
-    var pid = req.params.pid;
-
-    var pageWidgets = widgets.filter(function(wg) {
-      return wg.pageId == pid;
-    });
-
-    var remainingWidgets = widgets.filter(function(wg) {
-      return wg.pageId != pid;
-    });
-
-    var item = pageWidgets.splice(initial, 1)[0];
-    if (item != null) {
-      pageWidgets.splice(final, 0, item);
-    }
-
-    widgets = remainingWidgets.concat(pageWidgets);
-    res.sendStatus(200);
+    console.log('sort');
+    model.widgetModel
+      .reorderWidget(req.params.pid, req.query['initial'], req.query['final'])
+      .then(function () {
+        res.sendStatus(200);
+      }, function (err) {
+        res.status(404).send(err);
+      });
   }
 
   function findWidgetById(req, res) {

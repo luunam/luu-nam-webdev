@@ -3,7 +3,7 @@ module.exports = function () {
 
   var widgetSchema = mongoose.Schema({
     _page: { type: mongoose.Schema.Types.ObjectId, ref: 'Page' },
-    widgetType: {type: String, enum: ['HEADER', 'IMAGE', 'YOUTUBE', 'HTML', 'INPUT']},
+    widgetType: {type: String, enum: ['HEADER', 'IMAGE', 'YOUTUBE', 'HTML', 'TEXT']},
     name: String,
     text: String,
     placeholder: String,
@@ -17,7 +17,8 @@ module.exports = function () {
     icon: String,
     deletable: Boolean,
     formatted: Boolean,
-    dateCreated: {type: Date, default: Date.now}
+    dateCreated: {type: Date, default: Date.now},
+    order: Number
   }, {collection: 'widget'});
 
   return widgetSchema;

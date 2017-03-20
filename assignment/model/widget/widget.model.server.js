@@ -20,14 +20,23 @@ module.exports = function () {
     var deferred = q.defer();
     widget._page = pid;
     widgetModel
-      .create(widget, function (err, doc) {
+      .count({_page: pid})
+      .exec(function(err, count) {
         if (err) {
-          console.log('ERROR WIDGET: ', err);
           deferred.reject(err);
         } else {
-          deferred.resolve(doc);
+          widget.order = count;
+          widgetModel
+            .create(widget, function (err, doc) {
+              if (err) {
+                deferred.reject(err);
+              } else {
+                deferred.resolve(doc);
+              }
+            });
         }
       });
+
     return deferred.promise;
   }
 
@@ -38,6 +47,9 @@ module.exports = function () {
         if (err) {
           deferred.abort(err);
         } else {
+          widgets.sort(function(a, b) {
+            return a.order - b.order;
+          });
           deferred.resolve(widgets);
         }
       });
@@ -85,6 +97,54 @@ module.exports = function () {
   }
 
   function reorderWidget(pid, start, end) {
+    console.log('start: ' + start);
+    console.log('end: ' + end);
+    var deferred = q.defer();
+    widgetModel
+      .find({_page: pid})
+      .exec(function(err, widgets) {
+        if (err) {
+          deferred.reject(err);
+        } else {
+          console.log(start);
+          console.log(widgets);
+          var st = widgets.find(function(tmp) {
+            return tmp.order == start;
+          });
 
+          if (start < end) {
+            for (var w in widgets) {
+              if (widgets[w].order > start && widgets[w].order <= end) {
+                widgets[w].order--;
+              }
+            }
+            st.order = end;
+
+            for (var w in widgets) {
+              widgets[w].save(function(err) {
+                if (err) {
+                  deferred.reject(err);
+                }
+              })
+            }
+          } else {
+            for (var w in widgets) {
+              if (widgets[w].order < start && widgets[w].order >= end) {
+                widgets[w].order++;
+              }
+            }
+            st.order = start;
+
+            for (var w in widgets) {
+              widgets[w].save(function(err) {
+                if (err) {
+                  deferred.reject(err);
+                }
+              })
+            }
+          }
+        }
+      });
+    return deferred.promise;
   }
 };

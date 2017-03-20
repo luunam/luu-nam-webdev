@@ -18,8 +18,6 @@
 
       WidgetService.findWidgetsByPageId(vm.pid)
         .success(function(res) {
-          console.log("CLIENT: ");
-          console.log(res);
           vm.widgets = res;
         })
         .error(function() {
@@ -54,7 +52,6 @@
     vm.createWidget = createWidget;
 
     function createWidget(type) {
-      console.log('TYPE: ', type);
       widget = { widgetType: type };
       WidgetService.createWidget(vm.pid, widget)
         .success(function(res) {

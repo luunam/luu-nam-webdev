@@ -29,8 +29,8 @@
         <div ng-switch-when="IMAGE">
           <ng-include src="'views/widget/templates/widget-image.view.client.html'"></ng-include>
         </div>
-        <div ng-switch-when="HTML" ng-bind-html="model.getTrustedHtml(widget.text)">
-        </div>
+        <div ng-switch-when="HTML" ng-bind-html="model.getTrustedHtml(widget.text)"></div>
+        <div ng-switch-when="TEXT" ng-bind-html="model.getTrustedHtml(widget.text)"></div>
         <div ng-switch-when="YOUTUBE">
           <ng-include src="'views/widget/templates/widget-youtube.view.client.html'"></ng-include>
         </div>

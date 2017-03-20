@@ -3,7 +3,6 @@
     .module('WebAppMaker')
     .directive('wbdvSortable', sortableDir);
 
-  console.log('directive');
   function sortableDir(WidgetService) {
     function linkFunc(scope, element, attributes) {
       element.sortable({
