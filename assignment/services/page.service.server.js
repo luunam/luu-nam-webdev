@@ -5,12 +5,6 @@ module.exports = function(app, model) {
   app.put("/api/page/:pid", updatePage);
   app.delete("/api/page/:pid", deletePage);
 
-  var pages = [
-    { "_id": "321", "name": "Post 1", "websiteId": "456", "description": "Lorem" },
-    { "_id": "432", "name": "Post 2", "websiteId": "456", "description": "Lorem" },
-    { "_id": "543", "name": "Post 3", "websiteId": "456", "description": "Lorem" }
-  ];
-
   function createPage(req, res) {
     model.pageModel
       .createPage(req.params.wid, req.body)

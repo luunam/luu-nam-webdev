@@ -5,13 +5,6 @@ module.exports = function (app, model) {
   app.delete("/api/user/:userId", deleteUser);
   app.post("/api/user", createUser);
 
-  // var users = [
-  //   {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
-  //   {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"  },
-  //   {_id: "345", username: "charly",   password: "charly",   firstName: "Charly", lastName: "Garcia"  },
-  //   {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi" }
-  // ];
-
   function deleteUser(req, res) {
     model.userModel
       .deleteUser(req.params.userId)

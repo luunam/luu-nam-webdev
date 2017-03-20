@@ -106,8 +106,6 @@ module.exports = function () {
         if (err) {
           deferred.reject(err);
         } else {
-          console.log(start);
-          console.log(widgets);
           var st = widgets.find(function(tmp) {
             return tmp.order == start;
           });
