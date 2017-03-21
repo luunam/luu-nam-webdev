@@ -79,11 +79,18 @@
 
     function init() {
       vm.widget = {};
-      console.log('init');
       console.log(vm.wgid);
       WidgetService.findWidgetById(vm.wgid)
         .success(function(res) {
           vm.widget = res;
+          console.log(vm.widget);
+          if (vm.widget.widgetType === 'IMAGE') {
+            var pt = WidgetService.getPhoto();
+            console.log('pt ', pt);
+            if (pt !== null) {
+              vm.widget.url = pt;
+            }
+          }
         })
         .error(function() {
           console.log("find widget by id");

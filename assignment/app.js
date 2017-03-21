@@ -1,4 +1,5 @@
 module.exports = function(app) {
+  app.get("/api/env/flickrkey", getFlickrKey);
 
   require("./model/models.server")();
 
@@ -19,4 +20,9 @@ module.exports = function(app) {
   require("./services/website.service.server.js")(app, model);
   require("./services/page.service.server.js")(app, model);
   require("./services/widget.service.server.js")(app, model);
+
+  function getFlickrKey(req, res) {
+    var key = process.env.FLICKR_KEY;
+    res.json({result: key});
+  }
 };

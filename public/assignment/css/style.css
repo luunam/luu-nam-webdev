@@ -12,6 +12,11 @@ input.form-control {
   margin-bottom: 5px;
 }
 
+.flickr-photo {
+  width: 100%;
+  min-width: 0;
+}
+
 /* navbar */
 .navbar-default {
   background-color: #428bca;

@@ -11,7 +11,9 @@
       "findWidgetById": findWidgetById,
       "updateWidget": updateWidget,
       "deleteWidget": deleteWidget,
-      "sortWidget": sortWidget
+      "sortWidget": sortWidget,
+      "setPhoto": setPhoto,
+      "getPhoto": getPhoto
     };
     return api;
 
@@ -37,6 +39,16 @@
 
     function sortWidget(pid, idx1, idx2) {
       return $http.put("/api/page/" + pid + "/widget?initial=" + idx1 + "&final=" + idx2);
+    }
+
+    function setPhoto(photo) {
+      this.photo = photo;
+    }
+
+    function getPhoto() {
+      var ret = this.photo;
+      this.photo = null;
+      return ret;
     }
   }
 })();
