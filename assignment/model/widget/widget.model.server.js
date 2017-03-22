@@ -103,12 +103,16 @@ module.exports = function () {
     widgetModel
       .find({_page: pid})
       .exec(function(err, widgets) {
-        if (err) {
+        if (err || widgets == null) {
           deferred.reject(err);
         } else {
           var st = widgets.find(function(tmp) {
             return tmp.order == start;
           });
+
+          if (st == null) {
+            deferred.reject();
+          }
 
           if (start < end) {
             for (var w in widgets) {

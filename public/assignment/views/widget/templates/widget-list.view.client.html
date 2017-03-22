@@ -15,7 +15,7 @@
 
 <div class="container-fluid under-navbar">
   <div class="widget-list" wbdv-sortable="{{model.pid}}">
-    <div ng-repeat="widget in model.widgets">
+    <div ng-repeat="widget in model.widgets" wg-id={{widget._id}} wg-order="{{widget.order}}">
       <div ng-switch="widget.widgetType">
         <div class="jga-toolbar">
           <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{widget._id}}">
