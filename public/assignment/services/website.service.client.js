@@ -34,5 +34,4 @@
       return $http.delete("/api/website/" + websiteId);
     }
   }
-})
-();
+})();

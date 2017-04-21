@@ -1,0 +1,61 @@
+html, body {
+  font-family: 'PT Sans', sans-serif;
+}
+
+img.bg {
+  /* Set rules to fill background */
+
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: 100%;
+
+  /* Set up positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.navbar {
+  flex-direction: row;
+}
+
+.nl-tab {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.nl-center {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  padding-left: 30px;
+  padding-right: 30px;
+  -webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
+  -moz-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
+  box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
+}
+
+.nl-home {
+  background-image: url("../images/bluePolygon.jpg");
+}
+
+.nl-assignment {
+  background-image: url("../images/redPolygon2.jpg");
+  background-size: cover;
+}
+
+.nl-project {
+  background-image: url("../images/greenPolygon.jpg");
+  background-size: cover;
+}
+
+.nl-white-text {
+  font-family: 'PT Sans', sans-serif;
+  color: white !important;
+}
+
+.nl-bg {
+  background-color: rgba(0, 0, 0, 0.28)!important;
+}
